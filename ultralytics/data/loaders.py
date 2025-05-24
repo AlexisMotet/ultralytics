@@ -367,7 +367,7 @@ class LoadImagesAndVideos:
         self.mode = "video" if ni == 0 else "image"  # default to video if no images
         self.vid_stride = vid_stride  # video frame-rate stride
         self.bs = batch
-        self.cv2_flag = cv2.IMREAD_GRAYSCALE if channels == 1 else cv2.IMREAD_COLOR  # grayscale or RGB
+        self.cv2_flag = cv2.IMREAD_GRAYSCALE if channels == 1 else (cv2.IMREAD_UNCHANGED if channels == 4 else cv2.IMREAD_COLOR)  # grayscale or RGB
         if any(videos):
             self._new_video(videos[0])  # new video
         else:
